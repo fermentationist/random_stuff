@@ -31,6 +31,9 @@ random_stuff 10 alphanumwcaps
 
 // Generate a random string of 10 numbers and letters, and copy it to the clipboard
 random_stuff 10 alphanum -c
+
+// Arguments can be in any order
+random_stuff alphanum --copy 10
 ```
 
 ## Usage - Library
@@ -41,7 +44,7 @@ To use the library, add the following to your `Cargo.toml` file:
 random_stuff = { git = "https://github.com/fermentationist/random_stuff.git" }
 ```
 
-Then, in your Rust code, import the library with `use random_stuff::random;`. As with the binary, the `random` function takes two arguments: the length of the string to generate, and the type of string to generate. Unlike the binary, the `random` function returns a `Result` type, which can be either `Ok(String)` or `Err(String)`. The `Err` type will be returned if the output type is not one of the allowed types listed above.
+Then, in your Rust code, import the library with `use random_stuff::random;`. As with the binary, the `random` function takes two arguments: the length of the string to generate, and the type of string to generate. Unlike the binary, the `random` function returns a `Result` type, which can be either `Ok(String)` or `Err(String)`. The `Err` type will be returned if the output type is not one of the allowed types listed above. (Allowed output types are also exported from the library, and can be imported with `use random_stuff::OUTPUT_TYPES;`)
 
 ```rust
 use random_stuff::random;
