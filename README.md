@@ -13,21 +13,26 @@ You will need to have Rust installed on your system. If you do not have Rust ins
     - Build the program with `cargo build --release`, and then run the binary - `./target/release/random_stuff`. This binary can also be moved and run from anywhere on your system, or even copied to another system (without Rust) and run there.
     - Install the program with `cargo install --path .` and then run with the command `random_stuff` from anywhere.
 4. To use, invoke the program with command line arguments specifying the length of the string to generate (an integer, required), and the type of characters to use (optional), which must be one of the following values: 
-        - `num` - numbers only (default)
-        - `alpha` - lowercase letters only 
-        - `alphawcaps` - lowercase and uppercase letters
-        - `alphanum` - numbers and lowercase letters 
-        - `alphanumwcaps` - numbers with lowercase and uppercase letters
+        - `num` - numbers only [0-9] *default* (10 possible characters, example: `08362261`)
+        - `alpha` - lowercase letters only [a-z] (26 possible characters, example: `jxqz`)
+        - `alphacaps` - uppercase letters only [A-Z] (26 possible characters, example: `JXQZ`)
+        - `alpha+caps` - lowercase and uppercase letters [a-zA-Z] (52 possible characters, example: `jXqZ`)
+        - `alphanum` - numbers and lowercase letters  [0-9a-z] (36 possible characters, example: `0x3q2z`)
+        - `alphanumcaps` - numbers and uppercase letters  [0-9A-Z] (36 possible characters, example: `0X3Q2Z`)
+        - `alphanum+caps` - numbers with lowercase and uppercase letters [0-9a-zA-Z] (62 possible characters, example: `0x3Q2z`)
+        - `hex` - hexadecimal numbers [0-9a-f] (16 possible characters, example: `0x3q2z`)
+        - `hexcaps` - hexadecimal numbers [0-9A-F] (16 possible characters, example: `0X3Q2Z`)
+        - `symbols` - numbers, lowercase and uppercase letters, and symbols [0-9a-zA-Z!@#$%^&*()-_=+[{]}\|;:'",<.>/?] (94 possible characters, example: `0x3Q2z!`)
     If no output type is specified, the default value of `num` will be used. 
 
- To copy the output to your clipboard, add the `--copy` or `-c` flag to the command. For example, `random_stuff 10 alphanum -c` will generate a random string of 10 numbers and letters, including capital and lowercase letters, and copy it to your clipboard.
+ To copy the output to your clipboard, add the `--copy` or `-c` flag to the command. For example, `random_stuff 10 alphanum+caps -c` will generate a random string of 10 numbers and letters (uppercase and lowercase), and copy it to your clipboard.
 
 ```JavaScript
 // Generate a random string of 10 numbers
 random_stuff 10
 
 // Generate a random string of 10 numbers and letters, including capital and lowercase letters
-random_stuff 10 alphanumwcaps
+random_stuff 10 alphanum+caps
 
 // Generate a random string of 10 numbers and letters, and copy it to the clipboard
 random_stuff 10 alphanum -c
@@ -49,7 +54,7 @@ Then, in your Rust code, import it with `use random_stuff;`. The library has two
 1. **`random`** - *`fn random(output_length: usize, output_type: &str) -> Result<String, String>`*
 `random` is a function that takes two arguments: the length of the string to generate, and the type of string to generate. It returns a `Result` type, which can be either `Ok(String)` or `Err(String)`. The `Err` type will be returned if the output type is not one of the allowed types listed above. 
 
-2. **`OUTPUT_TYPES`** - *`[&str; 5]`*
+2. **`OUTPUT_TYPES`** - *`[&str; 9]`*
 An array of allowed output types - it can be imported with `use random_stuff::OUTPUT_TYPES;`.
 
 ```rust
@@ -57,8 +62,8 @@ use random_stuff::{random, OUTPUT_TYPES};
 
 main () {
     println!("OUTPUT_TYPES: {:?}", OUTPUT_TYPES);
-    // OUTPUT_TYPES: ["num", "alpha", "alphawcaps", "alphanum", "alphanumwcaps"]
-    let output = random(10, "alphanumwcaps");
+    // OUTPUT_TYPES: ["num", "alpha", "alphacaps", "alpha+caps", "alphanum", "alphanumcaps", "alphanum+caps", "hex", "hexcaps", "symbols"]
+    let output = random(10, "alphanum+caps");
     match output {
         Ok(s) => println!("Output: {}", s),
         // Output: OYipyfgGZL
