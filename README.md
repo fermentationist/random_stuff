@@ -13,16 +13,16 @@ You will need to have Rust installed on your system. If you do not have Rust ins
     - Build the program with `cargo build --release`, and then run the binary - `./target/release/random_stuff`. This binary can also be moved and run from anywhere on your system, or even copied to another system (without Rust) and run there.
     - Install the program with `cargo install --path .` and then run with the command `random_stuff` from anywhere.
 4. To use, invoke the program with command line arguments specifying the length of the string to generate (an integer, required), and the type of characters to use (optional), which must be one of the following values: 
-        - `num` - numbers only [0-9] *default* (10 possible characters, example: `08362261`)
-        - `alpha` - lowercase letters only [a-z] (26 possible characters, example: `jxqz`)
-        - `alphacaps` - uppercase letters only [A-Z] (26 possible characters, example: `JXQZ`)
-        - `alpha+caps` - lowercase and uppercase letters [a-zA-Z] (52 possible characters, example: `jXqZ`)
-        - `alphanum` - numbers and lowercase letters  [0-9a-z] (36 possible characters, example: `0x3q2z`)
-        - `alphanumcaps` - numbers and uppercase letters  [0-9A-Z] (36 possible characters, example: `0X3Q2Z`)
-        - `alphanum+caps` - numbers with lowercase and uppercase letters [0-9a-zA-Z] (62 possible characters, example: `0x3Q2z`)
-        - `hex` - hexadecimal numbers [0-9a-f] (16 possible characters, example: `0x3q2z`)
-        - `hexcaps` - hexadecimal numbers [0-9A-F] (16 possible characters, example: `0X3Q2Z`)
-        - `symbols` - numbers, lowercase and uppercase letters, and symbols [0-9a-zA-Z!@#$%^&*()-_=+[{]}\|;:'",<.>/?] (94 possible characters, example: `0x3Q2z!`)
+            - `num` - numbers only [0-9] *default* (10 possible characters, example: `08362261`)
+            - `alpha` - lowercase letters only [a-z] (26 possible characters, example: `jxqz`)
+            - `alphacaps` - uppercase letters only [A-Z] (26 possible characters, example: `JXQZ`)
+            - `alpha+caps` - lowercase and uppercase letters [a-zA-Z] (52 possible characters, example: `jXqZ`)
+            - `alphanum` - numbers and lowercase letters  [0-9a-z] (36 possible characters, example: `0x3q2z`)
+            - `alphanumcaps` - numbers and uppercase letters  [0-9A-Z] (36 possible characters, example: `0X3Q2Z`)
+            - `alphanum+caps` - numbers with lowercase and uppercase letters [0-9a-zA-Z] (62 possible characters, example: `0x3Q2z`)
+            - `hex` - hexadecimal numbers [0-9a-f] (16 possible characters, example: `0x3q2z`)
+            - `hexcaps` - hexadecimal numbers [0-9A-F] (16 possible characters, example: `0X3Q2Z`)
+            - `symbols` - numbers, lowercase and uppercase letters, and symbols [0-9a-zA-Z!@#$%^&*()-_=+[{]}\|;:'",<.>/?] (94 possible characters, example: `0x3Q2z!`)
     If no output type is specified, the default value of `num` will be used. 
 
  To copy the output to your clipboard, add the `--copy` or `-c` flag to the command. For example, `random_stuff 10 alphanum+caps -c` will generate a random string of 10 numbers and letters (uppercase and lowercase), and copy it to your clipboard.
