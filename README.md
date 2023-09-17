@@ -38,22 +38,31 @@ random_stuff alphanum --copy 10
 
 ## Usage - Library
 
-To use the library, add the following to your `Cargo.toml` file:
+To use as a library, add the following to your `Cargo.toml` file:
 ```toml 
 [dependencies]
 random_stuff = { git = "https://github.com/fermentationist/random_stuff.git" }
 ```
 
-Then, in your Rust code, import the library with `use random_stuff::random;`. As with the binary, the `random` function takes two arguments: the length of the string to generate, and the type of string to generate. Unlike the binary, the `random` function returns a `Result` type, which can be either `Ok(String)` or `Err(String)`. The `Err` type will be returned if the output type is not one of the allowed types listed above. (Allowed output types are also exported from the library, and can be imported with `use random_stuff::OUTPUT_TYPES;`)
+Then, in your Rust code, import it with `use random_stuff;`. The library has two exports:
+
+1. **`random`** - *`fn random(output_length: usize, output_type: &str) -> Result<String, String>`*
+`random` is a function that takes two arguments: the length of the string to generate, and the type of string to generate. It returns a `Result` type, which can be either `Ok(String)` or `Err(String)`. The `Err` type will be returned if the output type is not one of the allowed types listed above. 
+
+2. **`OUTPUT_TYPES`** - *`[&str; 5]`*
+An array of allowed output types - it can be imported with `use random_stuff::OUTPUT_TYPES;`.
 
 ```rust
-use random_stuff::random;
+use random_stuff::{random, OUTPUT_TYPES};
 
 main () {
+    println!("OUTPUT_TYPES: {:?}", OUTPUT_TYPES);
+    // OUTPUT_TYPES: ["num", "alpha", "alphawcaps", "alphanum", "alphanumwcaps"]
     let output = random(10, "alphanumwcaps");
     match output {
-        Ok(s) => println!("{}", s),
-        Err(e) => println!("{}", e),
+        Ok(s) => println!("Output: {}", s),
+        // Output: OYipyfgGZL
+        Err(e) => println!("Error: {}", e),
     }
 }
 ```
