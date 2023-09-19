@@ -103,7 +103,7 @@ fn main() {
 
 This decoupling allows us to only test the `process_args` function, which is the only function that does anything other than read the command-line arguments. The `process_args` function is tested in `bin_tests.rs`, which is run by `cargo test`. 
 
-It could be argued that the "integration" tests indirectly test the library functions, as they are invoked by the `process_args` function, and are therefore superfluous. However, I think that unless the time it takes to run them becomes burdenous, it doesn't hurt to have the library functions tested directly, as well as indirectly, as it makes it easier to see what is being tested, and what is not. Besides, I wrote them first, and I'm not going to delete them now ;).
+It could be argued that the "integration" tests indirectly test the library functions, as they are invoked by the `process_args` function, and so the unit tests in `lib_tests.rs` are therefore superfluous. However, I think that unless the time it takes to run them becomes burdenous, it doesn't hurt to have the library functions tested directly, as well as indirectly, as it makes it easier to see what is being tested, and what is not. Besides, I wrote them first, and I'm not going to delete them now ;).
 
 ---
 
