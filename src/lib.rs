@@ -19,23 +19,23 @@ pub fn random(length: usize, output_type: &str) -> Result<String, String> {
   let caps: String = ALPHA[..].to_uppercase().chars().collect();
   let hexcaps = NUM.to_string() + &caps[..6];
   let mut range = rand::thread_rng();
-  let alpha_w_caps = ALPHA.to_string() + &caps;
+  let alpha_plus_caps = ALPHA.to_string() + &caps;
   let alphanum = ALPHA.to_string() + NUM;
   let alphanumcaps = caps.clone() + NUM;
-  let alphanum_w_caps = ALPHA.to_string() + &caps + NUM;
-  let symbols = alphanum_w_caps.clone() + "!@#$%^&*-_=+;:'\",<.>/?";
+  let alphanum_plus_caps = ALPHA.to_string() + &caps + NUM;
+  let symbols = alphanum_plus_caps.clone() + "!@#$%^&*-_=+;:'\",<.>/?";
   let chars = match output_type {
     "num" => NUM,
     "alpha" => ALPHA,
     "alphacaps" => &caps,
-    "alpha+caps" => &alpha_w_caps,
+    "alpha+caps" => &alpha_plus_caps,
     "alphanum" => &alphanum,
     "alphanumcaps" => &alphanumcaps,
-    "alphanum+caps" => &alphanum_w_caps,
+    "alphanum+caps" => &alphanum_plus_caps,
     "hex" => &hex,
     "hexcaps" => &hexcaps,
     "symbols" => &symbols,
-    &_ => &alphanum_w_caps
+    &_ => &alphanum_plus_caps
   };
   let output = (0..length).map(|_| {
     let random_index = range.gen_range(0..chars.len());

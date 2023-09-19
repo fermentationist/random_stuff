@@ -73,6 +73,38 @@ main () {
 }
 ```
 
+## Development
+
+### Testing
+
+To run the tests, use `cargo test`. 
+
+This will run the tests in `lib_tests.rs`, which are the unit tests for the library, as well as `bin_tests.rs`, which act as the "integration" tests for the binary executable. 
+
+In actuality, they are unit tests for the functions invoked by the binary executable to process the command-line arguments. These functions are decoupled from the `main` function that reads the command-line arguments for the sake of testability. This leaves the binary executable itself untested, but it is so simple that a simple manual test is sufficient.
+
+For example, this is `main.rs`, in its entirety (as of this writing):
+
+```rust
+use std::env;
+
+mod bin;
+
+#[cfg(test)]
+mod bin_tests;
+
+fn main() {
+    // get command-line args
+    let args: Vec<String> = env::args().collect();
+    // pass args to bin::process_args, with stdout as writer
+    bin::process_args(args, std::io::stdout());
+}
+```
+
+This decoupling allows us to only test the `process_args` function, which is the only function that does anything other than read the command-line arguments. The `process_args` function is tested in `bin_tests.rs`, which is run by `cargo test`. 
+
+It could be argued that the "integration" tests indirectly test the library functions, as they are invoked by the `process_args` function, and are therefore superfluous. However, I think that unless the time it takes to run them becomes burdenous, it doesn't hurt to have the library functions tested directly, as well as indirectly, as it makes it easier to see what is being tested, and what is not. Besides, I wrote them first, and I'm not going to delete them now ;).
+
 ---
 
 ### License

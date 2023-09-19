@@ -1,7 +1,5 @@
+// imported by lib.rs
 
-// #[cfg(test)] 
-// mod tests {
-  // use super::*;
 use crate::OUTPUT_TYPES;
 use crate::VERSION;
 use crate::random;

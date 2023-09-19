@@ -1,3 +1,5 @@
+// imported by main.rs
+
 use super::bin::{process_args, HELP_MESSAGE};
 use cli_clipboard::{ClipboardContext, ClipboardProvider};
 
