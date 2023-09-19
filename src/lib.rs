@@ -1,6 +1,12 @@
 use rand::Rng;
 use std::result::Result::Err;
 
+// import unit_tests
+#[cfg(test)]
+mod lib_tests;
+
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
+
 pub const OUTPUT_TYPES: [&str; 10] = ["num", "alpha", "alphacaps", "alpha+caps", "alphanum", "alphanumcaps", "alphanum+caps", "hex", "hexcaps", "symbols"];
 
 pub fn random(length: usize, output_type: &str) -> Result<String, String> {
@@ -17,7 +23,7 @@ pub fn random(length: usize, output_type: &str) -> Result<String, String> {
   let alphanum = ALPHA.to_string() + NUM;
   let alphanumcaps = caps.clone() + NUM;
   let alphanum_w_caps = ALPHA.to_string() + &caps + NUM;
-  let symbols = alpha_w_caps.clone() + "!@#$%^&*-_=+;:'\",<.>/?";
+  let symbols = alphanum_w_caps.clone() + "!@#$%^&*-_=+;:'\",<.>/?";
   let chars = match output_type {
     "num" => NUM,
     "alpha" => ALPHA,
