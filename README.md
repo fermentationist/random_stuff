@@ -55,7 +55,7 @@ Then, in your Rust code, import it with `use random_stuff;`. The library has two
 1. **`random`** - *`fn random(output_length: usize, output_type: &str) -> Result<String, String>`*
 `random` is a function that takes two arguments: the length of the string to generate, and the type of string to generate. It returns a `Result` type, which can be either `Ok(String)` or `Err(String)`. The `Err` type will be returned if the output type is not one of the allowed types listed above. 
 
-2. **`OUTPUT_TYPES`** - *`[&str; 9]`*
+2. **`OUTPUT_TYPES`** - *`[&str; 10]`*
 An array of allowed output types - it can be imported with `use random_stuff::OUTPUT_TYPES;`.
 
 ```rust
