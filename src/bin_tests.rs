@@ -1,4 +1,5 @@
 use super::bin::{process_args, HELP_MESSAGE};
+use cli_clipboard::{ClipboardContext, ClipboardProvider};
 
 // helper function to convert stdout buffer to string
 fn string_from_buffer(buffer: Vec<u8>) -> String {
@@ -26,6 +27,24 @@ fn version_flag() {
   test_cli_output(vec![
     "random_stuff --version", 
     "random_stuff -v"
+    ], 
+    condition
+  );
+}
+
+#[test]
+fn copy_flag() {
+  // --copy
+  let condition = |output: String| {
+    let mut context = ClipboardContext::new().unwrap();
+    let split: Vec<&str> = output.split("\n").collect();
+    let clipboard = context.get_contents().unwrap();
+    clipboard == split[0] && split[1] == "(copied to clipboard)"
+  };
+  test_cli_output(vec![
+    "random_stuff 1000 symbols --copy", 
+    "random_stuff symbols -c 1000",
+    "random_stuff -c 1000 symbols"
     ], 
     condition
   );
