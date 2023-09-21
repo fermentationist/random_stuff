@@ -107,6 +107,8 @@ It could be argued that the "integration" tests indirectly test the library func
 
 ### Dependencies
 
+- [Rust](https://www.rust-lang.org/tools/install) - The Rust programming language.
+
 - [cli-clipboard](https://crates.io/crates/cli-clipboard) - A simple cross-platform clipboard library for Rust.
 
 - [rand](https://crates.io/crates/rand) - A Rust library for random number generation.
